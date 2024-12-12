@@ -106,4 +106,4 @@ The graph illustrates the agent's learning journey:
 
 ## 🤝 Contributing
 
-Contributions, issues, and feature requests are welcome! Feel free to check the [issues page](your-github-repo-issues-link).
+Contributions, issues, and feature requests are welcome! Feel free to check the [issues page](https://github.com/ritmoali/Atari).
