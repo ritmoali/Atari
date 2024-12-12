@@ -92,11 +92,7 @@ The graph illustrates the agent's learning journey:
 - [ ] Implement Double DQN
 - [ ] Experiment with dueling network architectures
 - [ ] Cross-game generalization testing
-- [ ] Advanced reward scaling techniques
-
-## 📝 License
-
-[Specify your license here, e.g., MIT License]
+- [ ] Advanced reward scaling technique
 
 ## 🙏 Acknowledgements
 
