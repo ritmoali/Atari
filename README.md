@@ -1,105 +1,82 @@
-# Space Invaders Deep Q-Network (DQN)
+# Space Invaders Deep Q-Learning Project
 
 ## Overview
+This project implements a Deep Q-Learning (DQN) agent to play the classic Atari 2600 game Space Invaders using reinforcement learning techniques inspired by DeepMind's original research.
 
-This project demonstrates a Deep Q-Network (DQN) implementation for mastering the classic Atari game Space Invaders using reinforcement learning. By leveraging TensorFlow and Keras, the AI agent learns to play the game autonomously, showcasing the power of neural networks in solving complex decision-making tasks.
+## Project Structure
+- `space_invaders_dqn.py`: Main training script for the Deep Q-Learning agent
+- `models/`: Directory to save trained model checkpoints
+- `videos/`: Directory for recording gameplay videos during training
 
-## 🎮 Features
+## Technical Approach
 
-- **Advanced Preprocessing**: 
-  - Grayscale frame conversion
-  - Frame downscaling to 84x84 pixels
-  - 4-frame stacking for temporal context
+### Deep Q-Network Architecture
+The neural network is designed based on DeepMind's original DQN paper, featuring:
+- Input: 4 stacked grayscale frames (84x84 pixels)
+- 3 Convolutional layers for feature extraction
+- 1 Dense layer with 512 neurons
+- Output layer predicting Q-values for game actions
 
-- **Neural Network Architecture**:
-  - Convolutional layers for feature extraction
-  - Fully connected layers for high-level reasoning
-  - Q-value prediction for game actions
+### Key Components
+- **Experience Replay**: Stores and samples past experiences for training
+- **Target Network**: Stabilizes learning by using a separate network for Q-value targets
+- **Epsilon-Greedy Exploration**: Balances exploration and exploitation
 
-- **Intelligent Learning Techniques**:
-  - Epsilon-greedy exploration
-  - Experience replay
-  - Target network stabilization
-  - Huber loss optimization
-
-## 🛠 Requirements
-
-- Python 3.8+
-- TensorFlow 2.x
-- Keras
-- Gymnasium
-- Ale-py
-- NumPy
-- Matplotlib (for visualization)
-
-## 📦 Installation
-
-```bash
-pip install tensorflow keras gymnasium[atari] ale-py numpy matplotlib
-```
-
-## 🚀 Usage
-
-### Training the Model
-
-```bash
-# Train from scratch
-python train_space_invaders.py
-
-# Resume training from a saved model
-python train_space_invaders.py --load_model path_to_saved_model.keras
-```
-
-### Watching the Agent Play
-
-```bash
-python play_space_invaders.py
-```
-
-## 📊 Performance Metrics
-
-### Reward Progression
-
-![Reward Progression](reward_progression.png)
-
-The graph illustrates the agent's learning journey:
-- **Blue Line**: Raw episode rewards
-- **Red Line**: 50-episode running average
-
-### Key Performance Highlights
-
-- **Best Score**: 1115 points
-- **Learning Episodes**: Approximately 7510
-- **Notable Milestone**: Achieved stable performance with running reward > 800
-
-## 🧠 Learning Process
-
-1. **Exploration Phase**: Random actions with decaying exploration rate
-2. **Experience Replay**: Sampling and learning from past experiences
-3. **Q-Value Optimization**: Continuous improvement of action-value estimations
-4. **Target Network Synchronization**: Periodic weight updates for stability
-
-## 🔬 Hyperparameters
-
-- **Learning Rate**: 0.00025
+## Hyperparameters
 - **Discount Factor (γ)**: 0.99
+- **Initial Exploration Rate (ε)**: 1.0
+- **Minimum Exploration Rate**: 0.1
 - **Batch Size**: 32
-- **Exploration Rate (ε)**: Linear decay from 1.0 to 0.1
-- **Replay Buffer**: 100,000 experiences
+- **Learning Rate**: 0.00025
 
-## 🚧 Future Improvements
+## Training Process
+- Environment: Atari 2600 Space Invaders via Gymnasium
+- Preprocessing: Frame stacking, grayscale conversion
+- Training Stopping Conditions:
+  - Reaching a running reward threshold
+  - Maximum episodes
+  - Maximum total frames
 
-- [ ] Implement Double DQN
-- [ ] Experiment with dueling network architectures
-- [ ] Cross-game generalization testing
-- [ ] Advanced reward scaling technique
+## Requirements
+- Python 3.8+
+- TensorFlow
+- Gymnasium
+- ale-py
+- NumPy
 
-## 🙏 Acknowledgements
+## Installation
+```bash
+pip install gymnasium[atari] tensorflow numpy ale-py
+```
 
-- DeepMind's original DQN paper
-- OpenAI Gymnasium
-- Atari Learning Environment
+## Running the Training
+```bash
+python space_invaders_dqn.py
+```
 
-## 🤝 Contributing
+## Model Saving
+- Models are automatically saved during training
+- Checkpoints saved at regular intervals
+- Final model saved when training completes
 
-Contributions, issues, and feature requests are welcome! Feel free to check the [issues page](https://github.com/ritmoali/Atari).
+## Performance Tracking
+- Episode rewards tracked
+- Running reward calculated
+- Exploration rate decays over time
+
+## Challenges and Considerations
+- Computationally expensive training
+- Complex game environment
+- Balancing exploration and exploitation
+
+## Future Improvements
+- Hyperparameter tuning
+- Advanced exploration strategies
+- Extended training duration
+
+## References
+- DeepMind's DQN Nature Paper (2015)
+- Gymnasium Atari Environments Documentation
+
+## Acknowledgements
+Developed as part of a Deep Learning course assignment.
